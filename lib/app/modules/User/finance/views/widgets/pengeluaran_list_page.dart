@@ -17,7 +17,13 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
 
     return GestureDetector(
       onTap: () {
-         Get.to(() => const DetailFinanceView(), arguments: {'docId': docId, 'type': 'expense',},);
+        Get.to(
+          () => const DetailFinanceView(),
+          arguments: {
+            'docId': docId,
+            'type': 'expense',
+          },
+        );
       },
       child: Container(
         width: double.infinity,
@@ -63,7 +69,8 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: colorCategory,
                       borderRadius: BorderRadius.circular(10),
@@ -102,7 +109,8 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(8)),
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(8)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,7 +140,8 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
                           )),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 4),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
@@ -146,26 +155,32 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
                         ],
                       ),
                       child: Obx(() => DropdownButton<String>(
-                        value: controller.selectedFilter.value,
-                        items: <String>['Harian', 'Mingguan', 'Bulanan', 'Tahunan', 'Semua Data']
-                            .map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          if (newValue != null) {
-                            controller.selectedFilter.value = newValue;
-                            controller.listenToExpenseData(); // Refresh data
-                          }
-                        },
-                        elevation: 1,
-                        underline: const SizedBox(),
-                        isExpanded: false,
-                        icon: const Icon(Icons.filter_list, color: Colors.black54),
-                        style: const TextStyle(color: Colors.black87),
-                      )),
+                            value: controller.selectedFilter.value,
+                            items: <String>[
+                              'Harian',
+                              'Mingguan',
+                              'Bulanan',
+                              'Tahunan',
+                              'Semua Data'
+                            ].map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              if (newValue != null) {
+                                controller.selectedFilter.value = newValue;
+                                controller.listenToExpenseData();
+                              }
+                            },
+                            elevation: 1,
+                            underline: const SizedBox(),
+                            isExpanded: false,
+                            icon: const Icon(Icons.filter_list,
+                                color: Colors.black54),
+                            style: const TextStyle(color: Colors.black87),
+                          )),
                     ),
                   ],
                 ),
@@ -192,11 +207,13 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
                           var expense = controller.expenseList[index];
                           return cardItem(
                             expense['title'] ?? 'Unknown',
-                            (expense['nominal'] as num).toDouble(), 
+                            (expense['nominal'] as num).toDouble(),
                             expense['category'] ?? 'Unknown',
-                            Utils.biruDua, 
-                            expense['date'] is DateTime ? expense['date'] as DateTime : DateTime.parse(expense['date'].toString()), // Ensure DateTime
-                            expense['docId'] ?? '', 
+                            Utils.biruDua,
+                            expense['date'] is DateTime
+                                ? expense['date'] as DateTime
+                                : DateTime.parse(expense['date'].toString()),
+                            expense['docId'] ?? '',
                           );
                         },
                       );
@@ -211,7 +228,42 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
             right: 20,
             child: FloatingActionButton(
               onPressed: () {
-                Get.to(ExpenseView());
+                showModalBottomSheet(
+                  context: context,
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(16)),
+                  ),
+                  builder: (BuildContext context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              
+                            },
+                            child: const Text("Upload Gambar"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Foto Gambar"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(ExpenseView());
+                            },
+                            child: const Text("Isi Sendiri"),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
               },
               backgroundColor: Utils.biruDua,
               child: const Icon(Icons.add, color: Colors.white),

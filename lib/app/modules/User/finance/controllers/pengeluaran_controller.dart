@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PengeluaranController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -10,7 +11,7 @@ class PengeluaranController extends GetxController {
 
   var expenseList = <Map<String, dynamic>>[].obs;
   var totalExpenses = 0.0.obs;
-  var selectedFilter = 'Semua Data'.obs; 
+  var selectedFilter = 'Semua Data'.obs;
 
   @override
   void onInit() {
@@ -20,10 +21,8 @@ class PengeluaranController extends GetxController {
 
   void listenToExpenseData() {
     String uid = _auth.currentUser!.uid;
-    CollectionReference expenseCollection = _firestore
-        .collection('finances')
-        .doc(uid)
-        .collection('expense');
+    CollectionReference expenseCollection =
+        _firestore.collection('finances').doc(uid).collection('expense');
 
     expenseCollection.snapshots().listen((snapshot) {
       var expenseDocs = snapshot.docs.map((doc) {
@@ -31,20 +30,25 @@ class PengeluaranController extends GetxController {
         if (data['date'] is Timestamp) {
           data['date'] = (data['date'] as Timestamp).toDate();
         }
-        data['docId'] = doc.id; 
+        data['docId'] = doc.id;
         return data;
       }).toList();
 
       expenseDocs.sort((a, b) {
-        DateTime dateA = a['date'] is DateTime ? a['date'] as DateTime : DateTime.parse(a['date'].toString());
-        DateTime dateB = b['date'] is DateTime ? b['date'] as DateTime : DateTime.parse(b['date'].toString());
-        return dateB.compareTo(dateA); 
+        DateTime dateA = a['date'] is DateTime
+            ? a['date'] as DateTime
+            : DateTime.parse(a['date'].toString());
+        DateTime dateB = b['date'] is DateTime
+            ? b['date'] as DateTime
+            : DateTime.parse(b['date'].toString());
+        return dateB.compareTo(dateA);
       });
 
       List<Map<String, dynamic>> filteredDocs = _filterData(expenseDocs);
 
       expenseList.value = filteredDocs;
-      totalExpenses.value = filteredDocs.fold(0.0, (sum, item) => sum + (item['nominal'] as num).toDouble());
+      totalExpenses.value = filteredDocs.fold(
+          0.0, (sum, item) => sum + (item['nominal'] as num).toDouble());
     });
   }
 
@@ -70,8 +74,18 @@ class PengeluaranController extends GetxController {
     }
 
     return data.where((item) {
-      DateTime itemDate = item['date'] is DateTime ? item['date'] as DateTime : DateTime.parse(item['date'].toString());
+      DateTime itemDate = item['date'] is DateTime
+          ? item['date'] as DateTime
+          : DateTime.parse(item['date'].toString());
       return itemDate.isAfter(startDate);
     }).toList();
+  }
+
+  void pickImage() {
+
+  }
+
+  void takeImage() {
+    
   }
 }
