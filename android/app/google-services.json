@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "506463094814",
+    "project_id": "safe-loan-1ea9e",
+    "storage_bucket": "safe-loan-1ea9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506463094814:android:31e96c719ea4e1b3a4460f",
+        "android_client_info": {
+          "package_name": "com.amcc.safeloan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUZzMc8DREUaTKPtFLnhwXJKAMQqMWPgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506463094814:android:052e6ad2d2f61521a4460f",
+        "android_client_info": {
+          "package_name": "com.safeloan.safeloan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUZzMc8DREUaTKPtFLnhwXJKAMQqMWPgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
