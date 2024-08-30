@@ -243,13 +243,13 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
                         children: [
                           TextButton(
                             onPressed: () {
-                              
+                              controller.pickImage();
                             },
                             child: const Text("Upload Gambar"),
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              controller.takeImage();
                             },
                             child: const Text("Foto Gambar"),
                           ),

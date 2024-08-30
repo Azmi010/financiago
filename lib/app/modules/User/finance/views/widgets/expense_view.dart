@@ -37,13 +37,13 @@ class ExpenseView extends GetView<FinanceController> {
               nama: 'Judul',
               hintText: 'Masukkan judul pengeluaran',
               leadingIcon: Icons.assignment,
-              controller: titleC,
+              controller: controller.titleC,
             ),
             InputAkunWidget(
               nama: 'Nominal',
               hintText: '0',
               leadingIcon: Icons.attach_money,
-              controller: nominalC,
+              controller: controller.nominalC,
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 10),
@@ -123,7 +123,7 @@ class ExpenseView extends GetView<FinanceController> {
               nama: 'Tanggal',
               hintText: '15/07/2024',
               leadingIcon: Icons.date_range,
-              controller: dateC,
+              controller: controller.dateC,
               readOnly: true,
               onTap: () async {
                 DateTime? pickedDate = await showDatePicker(
