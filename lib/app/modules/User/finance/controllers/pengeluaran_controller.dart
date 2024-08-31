@@ -8,11 +8,15 @@ import 'package:get/get.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../views/widgets/expense_view.dart';
+import 'finance_controller.dart';
+
 class PengeluaranController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final ImagePicker _picker = ImagePicker();
   late final GenerativeModel _model;
+  final FinanceController controller = Get.put(FinanceController());
 
   FirebaseAuth get auth => _auth;
 
@@ -120,16 +124,29 @@ class PengeluaranController extends GetxController {
       print('Response Text:');
       print(responseText);
 
-      final regex =
-          RegExp(r'Title:\s*(.+?),\s*Amount:\s*([\d.,]+),\s*Date:\s*(.+)');
+      final regex = RegExp(
+          r'Title:\s*(.*?),\s*Amount:\s*Rp([\d.,]+),\s*Date:\s*(\d{1,2}\s\w+\s\d{4})',
+          caseSensitive: false);
+
       final match = regex.firstMatch(responseText ?? '');
 
       if (match != null) {
-        titleC.text = match.group(1) ?? '';
-        nominalC.text = match.group(2) ?? '';
-        dateC.text = match.group(3) ?? '';
+        String title = match.group(1)?.trim() ?? '';
+        String nominal = match.group(2)?.trim() ?? '';
+        String dateStr = match.group(3)?.trim() ?? '';
+
+        print('Extracted Title: $title');
+        print('Extracted Nominal: $nominal');
+        print('Extracted Date: $dateStr');
+
+        Get.to(() => ExpenseView(), arguments: {
+          'title': title,
+          'nominal': nominal,
+          'date': dateStr,
+        });
       } else {
         print('No match found');
+        Get.snackbar('Error', 'Failed to extract information from the image');
       }
     } catch (e) {
       print('Error analyzing image: $e');

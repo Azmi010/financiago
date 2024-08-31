@@ -15,7 +15,14 @@ class ExpenseView extends GetView<FinanceController> {
   final TextEditingController notesC = TextEditingController();
   final ValueNotifier<String> selectedCategory = ValueNotifier<String>('');
 
-  ExpenseView({super.key});
+  ExpenseView({super.key}) {
+    final args = Get.arguments;
+    if (args != null && args is Map<String, String>) {
+      controller.titleC.text = args['title'] ?? '';
+      controller.nominalC.text = args['nominal'] ?? '';
+      controller.dateC.text = args['date'] ?? '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,13 +154,14 @@ class ExpenseView extends GetView<FinanceController> {
             const SizedBox(height: 30),
             ButtonWidget(
               onPressed: () {
-                String title = titleC.text;
-                String nominalText = nominalC.text;
-                String dateText = dateC.text;
-                String notes = notesC.text;
+                String title = controller.titleC.text;
+                String nominalText = controller.nominalC.text;
+                String dateText = controller.dateC.text;
+                String notes = controller.notesC.text;
                 String category = selectedCategory.value;
 
-                if (title.isEmpty || nominalText.isEmpty ||
+                if (title.isEmpty ||
+                    nominalText.isEmpty ||
                     dateText.isEmpty ||
                     category.isEmpty ||
                     notes.isEmpty) {
@@ -172,8 +180,8 @@ class ExpenseView extends GetView<FinanceController> {
                     return;
                   }
 
-                  controller.confirmAddExpense(
-                      context, title, nominal, category, date, notes);
+                  controller.confirmAddExpense(context, title,
+                      double.parse(nominalText), category, date, notes);
                 }
               },
               nama: 'Tambah',
