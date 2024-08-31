@@ -8,8 +8,8 @@ import 'package:safeloan/app/widgets/confirm_show_dialog_widget.dart';
 import 'package:safeloan/app/widgets/show_dialog_info_widget.dart';
 
 class LoginController extends GetxController {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController(text: "devaksesmikail08@gmail.com");
+  final passwordController = TextEditingController(text: "dev123");
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
