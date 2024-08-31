@@ -169,7 +169,7 @@ class LoanView extends GetView<LoanController> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed('/add-loan'),
-        backgroundColor: Utils.biruTiga,
+        backgroundColor: Utils.biruSatu,
         child: const Icon(Icons.add, color: Colors.white),
       ),
     );

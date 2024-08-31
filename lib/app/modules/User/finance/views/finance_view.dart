@@ -28,7 +28,7 @@ class FinanceView extends GetView<FinanceController> {
     Get.put(LoanController());
     return Scaffold(
       appBar: AppBar(
-        title: Text("Keuangan", style: Utils.header,),
+        title: const Text("Keuangan", style: Utils.header,),
         backgroundColor: Colors.white,
         centerTitle: true,
       ),
