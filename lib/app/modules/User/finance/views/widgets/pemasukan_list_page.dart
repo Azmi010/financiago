@@ -64,7 +64,7 @@ class PemasukanListPage extends GetView<PemasukanController> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Utils.biruDua,
+                      color: Utils.biruSatu,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
@@ -240,7 +240,7 @@ class PemasukanListPage extends GetView<PemasukanController> {
                   },
                 );
               },
-              backgroundColor: Utils.biruDua,
+              backgroundColor: Utils.biruSatu,
               child: const Icon(Icons.add, color: Colors.white),
             ),
           ),

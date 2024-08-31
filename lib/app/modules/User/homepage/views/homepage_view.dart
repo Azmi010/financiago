@@ -231,8 +231,7 @@ class HomepageView extends GetView<HomepageController> {
                                 ),
                               ),
                             ),
-                            // Gradient Overlay
-                            Positioned(
+                            Positioned.fill(
                               left: 0,
                               top: 0,
                               child: GestureDetector(

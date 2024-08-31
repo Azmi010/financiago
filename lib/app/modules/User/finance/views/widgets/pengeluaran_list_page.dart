@@ -209,7 +209,7 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
                             expense['title'] ?? 'Unknown',
                             (expense['nominal'] as num).toDouble(),
                             expense['category'] ?? 'Unknown',
-                            Utils.biruDua,
+                            Utils.biruSatu,
                             expense['date'] is DateTime
                                 ? expense['date'] as DateTime
                                 : DateTime.parse(expense['date'].toString()),
@@ -265,7 +265,7 @@ class PengeluaranListPage extends GetView<PengeluaranController> {
                   },
                 );
               },
-              backgroundColor: Utils.biruDua,
+              backgroundColor: Utils.biruSatu,
               child: const Icon(Icons.add, color: Colors.white),
             ),
           ),
