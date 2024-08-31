@@ -34,14 +34,14 @@ class AnalysisView extends GetView<AnalysisController> {
                 padding: const EdgeInsets.all(16),
                 width: Get.width * 0.75,
                 decoration: BoxDecoration(
-                  color: Utils.biruLima,
+                  color: Utils.biruSatu,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Center(
                   child: Text(
-                    'Hi, aku Kelola-Bot. aku adalah AI yang akan mendampingimu di dalam aplikasi Kelola.In!',
+                    'Hi, aku robo-finance. aku adalah AI yang akan mendampingimu di dalam aplikasi Kelola.In!',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
               ),

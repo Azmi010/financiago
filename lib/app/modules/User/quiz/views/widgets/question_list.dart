@@ -17,7 +17,7 @@ class QuestionList extends GetView<QuizController> {
       height: 80,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Utils.biruDua,
+          backgroundColor: Utils.biruSatu,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
