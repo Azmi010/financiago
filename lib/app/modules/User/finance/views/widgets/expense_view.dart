@@ -74,22 +74,22 @@ class ExpenseView extends GetView<FinanceController> {
                       children: [
                         _buildCategoryColumn(
                           category: 'Darurat',
-                          icon: Icons.emergency,
+                          icon: 'assets/images/darurat.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Pangan',
-                          icon: Icons.restaurant,
+                          icon: 'assets/images/pangan.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
-                          category: 'Pakaian',
-                          icon: Icons.shopping_bag,
+                          category: 'Fesyen',
+                          icon: 'assets/images/fesyen.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Hiburan',
-                          icon: Icons.movie,
+                          icon: 'assets/images/hiburan.png',
                           selectedCategory: selectedCategory,
                         ),
                       ],
@@ -102,22 +102,22 @@ class ExpenseView extends GetView<FinanceController> {
                       children: [
                         _buildCategoryColumn(
                           category: 'Pendidikan',
-                          icon: Icons.school,
+                          icon: 'assets/images/pendidikan.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Kesehatan',
-                          icon: Icons.local_hospital,
+                          icon: 'assets/images/kesehatan.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Cicilan',
-                          icon: Icons.payment,
+                          icon: 'assets/images/cicilan.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Rumahan',
-                          icon: Icons.home,
+                          icon: 'assets/images/rumahan.png',
                           selectedCategory: selectedCategory,
                         ),
                       ],
@@ -194,7 +194,7 @@ class ExpenseView extends GetView<FinanceController> {
 
   Widget _buildCategoryColumn({
     required String category,
-    required IconData icon,
+    required String icon,
     required ValueNotifier<String> selectedCategory,
   }) {
     return ValueListenableBuilder<String>(
@@ -215,11 +215,7 @@ class ExpenseView extends GetView<FinanceController> {
                       color: isSelected ? Utils.biruEmpat : Colors.transparent),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(
-                  icon,
-                  size: 35,
-                  color: isSelected ? Utils.biruDua : Colors.black,
-                ),
+                child: Image.asset(icon, scale: 10,)
               ),
               const SizedBox(height: 7),
               Text(

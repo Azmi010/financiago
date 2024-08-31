@@ -104,14 +104,10 @@ class HomepageView extends GetView<HomepageController> {
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Hai! Selamat Datang",
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                Text(
+                  "Hai! ${detailController.userData['fullName']}",
+                  style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-                Obx(() => Text(
-                      detailController.userData['fullName'] ?? "Anonim",
-                      style: const TextStyle(fontSize: 14, color: Colors.black),
-                    )),
               ],
             ),
             actions: [
@@ -121,10 +117,12 @@ class HomepageView extends GetView<HomepageController> {
                     poin("assets/images/poin.png",
                         '${detailController.userData['point'] ?? 0}',
                         onTap: () => Get.to(LeaderBoard())),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: 5),
                     poin("assets/images/koin.png",
                         '${detailController.userData['coin'] ?? 0}',
                         onTap: () => Get.to(const PageTokoKoinView())),
+                    const SizedBox(width: 10),
+                    
                   ],
                 ),
               ),
@@ -142,7 +140,7 @@ class HomepageView extends GetView<HomepageController> {
                       context,
                       'Gamifikasi',
                       'assets/images/icon_game.png',
-                      Colors.orange,
+                      Utils.biruTiga,
                       () {
                         Get.to(() => const TabQuizView());
                       },
@@ -151,7 +149,7 @@ class HomepageView extends GetView<HomepageController> {
                       context,
                       'Konseling',
                       'assets/images/icon_konseling.png',
-                      Colors.purple,
+                      Utils.biruSatu,
                       () {
                         Get.to(() => const TabCounselingView());
                       },
@@ -285,13 +283,13 @@ class HomepageView extends GetView<HomepageController> {
                                           ],
                                         ),
                                         const SizedBox(
-                                          height: 20,
+                                          height: 40,
                                         ),
                                         ElevatedButton(
                                           onPressed: () => controller
                                               .navigateToDetailArticle(article),
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.purple,
+                                            backgroundColor: Utils.biruSatu,
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 16, vertical: 8),
