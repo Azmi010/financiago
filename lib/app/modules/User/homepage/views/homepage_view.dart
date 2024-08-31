@@ -220,10 +220,11 @@ class HomepageView extends GetView<HomepageController> {
                                   ),
                                 ],
                               ),
-                              child: Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
                                 child: Image.network(
                                   article.image,
-                                  fit: BoxFit.fitHeight,
+                                  fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) {
                                     return const Center(
                                         child: Icon(Icons.error));
@@ -232,127 +233,98 @@ class HomepageView extends GetView<HomepageController> {
                               ),
                             ),
                             Positioned.fill(
-                              left: 0,
-                              top: 0,
-                              child: GestureDetector(
-                                onTap: () =>
-                                    controller.navigateToDetailArticle(article),
-                                child: Container(
-                                  height: 200,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white.withOpacity(0.7),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          article.title.length > 20
-                                              ? "${article.title.substring(0, 20)}..."
-                                              : article.title,
-                                          style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.black.withOpacity(0.5),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            article.title.length > 40
+                                                ? "${article.title.substring(0, 40)}..."
+                                                : article.title,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        const Row(
-                                          children: [
-                                            Icon(
-                                              Icons.access_time,
-                                              color: Colors.grey,
-                                              size: 12,
-                                            ),
-                                            SizedBox(width: 4),
-                                            Text(
-                                              "3 menit",
-                                              style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 12,
+                                          const SizedBox(height: 8),
+                                          const Row(
+                                            children: [
+                                              Icon(
+                                                Icons.access_time,
+                                                color: Colors.white70,
+                                                size: 14,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        ElevatedButton(
+                                              SizedBox(width: 4),
+                                              Text(
+                                                "3 menit",
+                                                style: TextStyle(
+                                                  color: Colors.white70,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: ElevatedButton(
                                           onPressed: () => controller
                                               .navigateToDetailArticle(article),
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.purple,
-                                            foregroundColor: Colors.black,
+                                            foregroundColor: Colors.white,
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 16, vertical: 8),
                                             textStyle: const TextStyle(
-                                                fontSize: 12,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.bold),
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),
                                           ),
-                                          child: SizedBox(
-                                            width: 70,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                const Text(
-                                                  "Baca",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 14),
-                                                ),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Image.asset(
-                                                  'assets/images/read.png',
-                                                  scale: 9,
-                                                )
-                                              ],
-                                            ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              const Text("Baca"),
+                                              const SizedBox(width: 5),
+                                              Image.asset(
+                                                'assets/images/read.png',
+                                                height: 20,
+                                                color: Colors.white,
+                                              )
+                                            ],
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Container(
-                                height: 200,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.black38,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    article.title.length > 20
-                                        ? "Artikel : ${article.title.substring(0, 20)}..."
-                                        : "Artikel : ${article.title}",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
+                            Positioned.fill(
+                              child: GestureDetector(
+                                onTap: () =>
+                                    controller.navigateToDetailArticle(article),
+                                behavior: HitTestBehavior.translucent,
+                                child: Container(
+                                  color: Colors.transparent,
+                                  margin: const EdgeInsets.only(bottom: 50),
                                 ),
                               ),
                             ),
@@ -360,7 +332,7 @@ class HomepageView extends GetView<HomepageController> {
                         );
                       },
                       options: CarouselOptions(
-                        height: 205,
+                        height: 200,
                         viewportFraction: 0.9,
                         enlargeCenterPage: true,
                         enableInfiniteScroll: true,
