@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:safeloan/app/widgets/confirm_show_dialog_widget.dart';
 import 'package:safeloan/app/widgets/show_dialog_info_widget.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../../challange_page/controllers/challange_page_controller.dart';
 
 class FinanceController extends GetxController {
@@ -42,15 +43,11 @@ class FinanceController extends GetxController {
       }
 
       _resetInputs();
-      Get.back();
-      Get.back();
-      Get.back();
+      Get.offAllNamed(Routes.NAVIGATION);
       showDialogInfoWidget(
           "Berhasil menambahkan penghasilan", 'succes', context);
-     
     } catch (e) {
-      showDialogInfoWidget(
-          "Gagal menambahkan penghasilan", 'fail', context);
+      showDialogInfoWidget("Gagal menambahkan penghasilan", 'fail', context);
     }
   }
 
@@ -108,8 +105,7 @@ class FinanceController extends GetxController {
       });
 
       _resetInputs();
-      Get.back();
-      Get.back();
+      Get.offAllNamed(Routes.NAVIGATION);
       showDialogInfoWidget('Berhasil menambah pengeluaran', 'succes', context);
     } catch (e) {
       showDialogInfoWidget('Gagal menambah pengeluaran', 'fail', context);

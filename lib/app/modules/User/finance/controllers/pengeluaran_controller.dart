@@ -102,14 +102,28 @@ class PengeluaranController extends GetxController {
     }).toList();
   }
 
-  Future<void> analyzeImage(File imageFile) async {
+  Future<void> analyzeImage(File imageFile, bool includeCategory) async {
     try {
-      const prompt =
-          "Analyze this receipt image and extract the following information: "
-          "1. The title or main item of the expense. "
-          "2. The total amount spent. "
-          "3. The date of the expense. "
-          "Please format the response as: Title: [title], Amount: [amount], Date: [date]";
+      // Construct the prompt dynamically
+      String prompt;
+      if (includeCategory) {
+        prompt =
+            "Analyze this receipt image and extract the following information: "
+            "1. The title or main item of the expense. "
+            "2. The total amount spent. "
+            "3. The date of the expense in the format 'yyyy-MM-dd'. "
+            "4. The category of the expense from the following list: "
+            "Darurat, Pangan, Pakaian, Hiburan, Pendidikan, Kesehatan, Cicilan, Rumahan. "
+            "Please format the response as: Title: [title], Amount: [amount], Date: [yyyy-MM-dd], Category: [category]. "
+            "If the extracted category is not in the list, please default to 'Uncategorized'.";
+      } else {
+        prompt =
+            "Analyze this receipt image and extract the following information: "
+            "1. The title or main item of the expense. "
+            "2. The total amount spent. "
+            "3. The date of the expense in the format 'yyyy-MM-dd'. "
+            "Please format the response as: Title: [title], Amount: [amount], Date: [yyyy-MM-dd].";
+      }
 
       final imageBytes = await imageFile.readAsBytes();
 
@@ -124,9 +138,10 @@ class PengeluaranController extends GetxController {
       print('Response Text:');
       print(responseText);
 
-      final regex = RegExp(
-          r'Title:\s*(.*?),\s*Amount:\s*Rp([\d.,]+),\s*Date:\s*(\d{1,2}\s\w+\s\d{4})',
-          caseSensitive: false);
+      final regexString = includeCategory
+          ? r'Title:\s*(.*?),\s*Amount:\s*([\d.,]+),\s*Date:\s*(\d{4}-\d{2}-\d{2}),\s*Category:\s*(.*)'
+          : r'Title:\s*(.*?),\s*Amount:\s*([\d.,]+),\s*Date:\s*(\d{4}-\d{2}-\d{2})';
+      final regex = RegExp(regexString, caseSensitive: false);
 
       final match = regex.firstMatch(responseText ?? '');
 
@@ -134,15 +149,47 @@ class PengeluaranController extends GetxController {
         String title = match.group(1)?.trim() ?? '';
         String nominal = match.group(2)?.trim() ?? '';
         String dateStr = match.group(3)?.trim() ?? '';
+        String category =
+            includeCategory ? (match.group(4)?.trim() ?? 'Uncategorized') : '';
+
+        nominal = nominal.replaceAll('.', '');
 
         print('Extracted Title: $title');
         print('Extracted Nominal: $nominal');
         print('Extracted Date: $dateStr');
+        if (includeCategory) {
+          category = category.replaceAll('.', '').trim();
+
+          print('Extracted Category: $category');
+          List<String> validCategories = [
+            'Darurat',
+            'Pangan',
+            'Pakaian',
+            'Hiburan',
+            'Pendidikan',
+            'Kesehatan',
+            'Cicilan',
+            'Rumahan'
+          ];
+          if (!validCategories.contains(category)) {
+            category = 'Uncategorized';
+          }
+        }
+
+        DateTime? date;
+        try {
+          date = DateTime.parse(dateStr);
+        } catch (e) {
+          print('Error parsing date: $e');
+          Get.snackbar('Error', 'Failed to parse the date from the image');
+          return;
+        }
 
         Get.to(() => ExpenseView(), arguments: {
           'title': title,
           'nominal': nominal,
-          'date': dateStr,
+          'date': date,
+          'category': includeCategory ? category : null,
         });
       } else {
         print('No match found');
@@ -158,7 +205,8 @@ class PengeluaranController extends GetxController {
     try {
       final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
       if (image != null) {
-        await analyzeImage(File(image.path));
+        bool includeCategory = true;
+        await analyzeImage(File(image.path), includeCategory);
       }
     } catch (e) {
       print('Error picking image: $e');
@@ -169,7 +217,9 @@ class PengeluaranController extends GetxController {
     try {
       final XFile? image = await _picker.pickImage(source: ImageSource.camera);
       if (image != null) {
-        await analyzeImage(File(image.path));
+        bool includeCategory = true;
+
+        await analyzeImage(File(image.path), includeCategory);
       }
     } catch (e) {
       print('Error taking image: $e');
