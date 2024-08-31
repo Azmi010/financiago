@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safeloan/app/modules/User/analysis/views/analysis_view.dart';
-import 'package:safeloan/app/modules/User/tab_quiz/views/tab_quiz_view.dart';
+import 'package:safeloan/app/modules/User/education/views/education_view.dart';
 import 'package:safeloan/app/utils/warna.dart';
 import '../../finance/views/finance_view.dart';
 import '../../homepage/views/homepage_view.dart';
@@ -17,10 +17,10 @@ class NavigationView extends GetView<NavigationController> {
     final int initialIndex = Get.arguments?['initialIndex'] ?? 0;
     controller.selectedIndex.value = initialIndex;
     final List<Widget> pages = [
-      HomepageView(),
+      const HomepageView(),
       const FinanceView(),
       const AnalysisView(),
-      const TabQuizView(),
+      const EducationView(),
       const ProfileView(),
     ];
 
@@ -78,13 +78,13 @@ class NavigationView extends GetView<NavigationController> {
                         duration: const Duration(milliseconds: 300),
                         child: controller.selectedIndex.value == 3
                             ? const Icon(
-                                Icons.quiz,
+                                Icons.school,
                               )
                             : const Icon(
-                                Icons.quiz_outlined,
+                                Icons.school_outlined,
                               ),
                       ),
-                      label: 'Gamifikasi',
+                      label: 'Edukasi',
                     ),
                     BottomNavigationBarItem(
                       icon: AnimatedSwitcher(

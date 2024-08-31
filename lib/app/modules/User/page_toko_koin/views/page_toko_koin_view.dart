@@ -74,7 +74,7 @@ class PageTokoKoinView extends GetView<PageTokoKoinController> {
     PageTokoKoinController controller = Get.put(PageTokoKoinController());
     return Card(
       elevation: 4,
-      color: Utils.biruLima,
+      color: Utils.biruSatu,
       child: InkWell(
         onTap: () async {
           final item = ItemDetail(
@@ -92,7 +92,7 @@ class PageTokoKoinView extends GetView<PageTokoKoinController> {
             children: [
               Text(
                 jumlahCoin,
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               Image.asset(
                 linkImage,
@@ -103,7 +103,7 @@ class PageTokoKoinView extends GetView<PageTokoKoinController> {
                 padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Utils.biruSatu,
+                  color: Utils.biruTiga,
                 ),
                 child: Text(
                   hargaCoin,
