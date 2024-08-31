@@ -71,7 +71,7 @@ class EditJadwalView extends GetView<EditJadwalController> {
                               width: 60,
                               height: 60,
                               decoration: BoxDecoration(
-                                color: Utils.biruDua,
+                                color: Utils.biruTiga,
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: const Icon(
@@ -113,7 +113,7 @@ class EditJadwalView extends GetView<EditJadwalController> {
                             ),
                             IconButton(
                               icon:
-                                  const Icon(Icons.edit, color: Utils.biruDua),
+                                  const Icon(Icons.edit, color: Utils.biruSatu),
                               onPressed: () {
                                 _showEditScheduleDialog(context, counseling);
                               },
