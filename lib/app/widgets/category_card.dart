@@ -22,8 +22,8 @@ class CategoryCard extends StatelessWidget {
         height: 50,
         width: 50,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Utils.biruEmpat,
+          borderRadius: BorderRadius.circular(10), // Border radius untuk ikon
+          color: Utils.biruSatu,
         ),
         child: Icon(
           icon,

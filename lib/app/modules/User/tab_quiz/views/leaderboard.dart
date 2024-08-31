@@ -157,7 +157,7 @@ class LeaderBoard extends GetView<TabQuizController> {
             displayName,
             style: TextStyle(
               fontWeight: isCurrentUser ? FontWeight.bold : FontWeight.normal,
-              color: isCurrentUser ? Utils.biruDua : Colors.black,
+              color: isCurrentUser ? Utils.biruTiga : Colors.black,
             ),
           ),
           Text(
@@ -204,7 +204,7 @@ class LeaderBoard extends GetView<TabQuizController> {
           displayName,
           style: TextStyle(
             fontWeight: isCurrentUser ? FontWeight.bold : FontWeight.normal,
-            color: isCurrentUser ? Utils.biruDua : Colors.black,
+            color: isCurrentUser ? Utils.biruTiga : Colors.black,
           ),
         ),
         trailing: Row(
@@ -215,7 +215,7 @@ class LeaderBoard extends GetView<TabQuizController> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: isCurrentUser ? Utils.biruDua : Colors.grey,
+                color: isCurrentUser ? Utils.biruTiga : Colors.grey,
               ),
             ),
             const SizedBox(width: 8),

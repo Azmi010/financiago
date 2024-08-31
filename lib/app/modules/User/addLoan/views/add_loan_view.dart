@@ -155,7 +155,7 @@ class AddLoanView extends GetView<AddLoanController> {
           ),
           const SizedBox(height: 8),
           Obx(() => Slider(
-                inactiveColor: Utils.biruDua,
+                inactiveColor: Utils.biruTiga,
                 activeColor: Utils.biruSatu,
                 value: sliderValue.value.toDouble(),
                 min: 1,
@@ -224,7 +224,7 @@ class AddLoanView extends GetView<AddLoanController> {
           if (onSliderChanged != null) ...[
             const SizedBox(height: 8),
             Obx(() => Slider(
-                  inactiveColor: Utils.biruDua,
+                  inactiveColor: Utils.biruTiga,
                   activeColor: Utils.biruSatu,
                   value: sliderValue.value,
                   min: min,

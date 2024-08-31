@@ -59,7 +59,7 @@ class EditProfileView extends GetView<EditProfileController> {
                           width: 2,
                         )),
                     child: IconButton(
-                      icon: const Icon(Icons.camera_alt, size: 20, color: Utils.biruDua,),
+                      icon: const Icon(Icons.camera_alt, size: 20, color: Utils.biruTiga,),
                       onPressed: () => profileController.updateProfileImage(context),
                       constraints:
                           const BoxConstraints.tightFor(width: 40, height: 40),

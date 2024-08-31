@@ -95,7 +95,7 @@ class ProfileView extends GetView<ProfileController> {
                         onPressed: () => Get.toNamed('/edit-profile'),
                         icon: const Icon(
                           Icons.edit,
-                          color: Utils.biruDua,
+                          color: Utils.biruTiga,
                         ),
                         constraints: const BoxConstraints.tightFor(
                             width: 30, height: 30),
