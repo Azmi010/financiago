@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart'; // Import this package for date formatting
+import 'package:intl/intl.dart';
 
 import '../../controllers/finance_controller.dart';
 import 'package:safeloan/app/utils/warna.dart';
@@ -17,10 +17,15 @@ class ExpenseView extends GetView<FinanceController> {
 
   ExpenseView({super.key}) {
     final args = Get.arguments;
-    if (args != null && args is Map<String, String>) {
-      controller.titleC.text = args['title'] ?? '';
-      controller.nominalC.text = args['nominal'] ?? '';
-      controller.dateC.text = args['date'] ?? '';
+    if (args != null && args is Map<String, dynamic>) {
+      titleC.text = args['title'] ?? '';
+      nominalC.text = args['nominal'] ?? '';
+      DateTime? date = args['date'];
+      if (date != null) {
+        dateC.text = DateFormat('dd/MM/yyyy').format(date);
+      }
+      String category = args['category'] ?? '';
+      selectedCategory.value = category;
     }
   }
 
@@ -44,13 +49,13 @@ class ExpenseView extends GetView<FinanceController> {
               nama: 'Judul',
               hintText: 'Masukkan judul pengeluaran',
               leadingIcon: Icons.assignment,
-              controller: controller.titleC,
+              controller: titleC,
             ),
             InputAkunWidget(
               nama: 'Nominal',
               hintText: '0',
               leadingIcon: Icons.attach_money,
-              controller: controller.nominalC,
+              controller: nominalC,
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 10),
@@ -130,7 +135,7 @@ class ExpenseView extends GetView<FinanceController> {
               nama: 'Tanggal',
               hintText: '15/07/2024',
               leadingIcon: Icons.date_range,
-              controller: controller.dateC,
+              controller: dateC,
               readOnly: true,
               onTap: () async {
                 DateTime? pickedDate = await showDatePicker(
@@ -154,10 +159,10 @@ class ExpenseView extends GetView<FinanceController> {
             const SizedBox(height: 30),
             ButtonWidget(
               onPressed: () {
-                String title = controller.titleC.text;
-                String nominalText = controller.nominalC.text;
-                String dateText = controller.dateC.text;
-                String notes = controller.notesC.text;
+                String title = titleC.text;
+                String nominalText = nominalC.text;
+                String dateText = dateC.text;
+                String notes = notesC.text;
                 String category = selectedCategory.value;
 
                 if (title.isEmpty ||

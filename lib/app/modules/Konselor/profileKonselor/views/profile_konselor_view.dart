@@ -15,7 +15,7 @@ class ProfileKonselorView extends GetView<ProfileKonselorController> {
     VoidCallback? onTap,
     String? subtitleText,
     Color leadingIconColor = Colors.black,
-    Color backgroundColor = Utils.biruLima,
+    Color backgroundColor = Utils.biruTiga,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
@@ -60,7 +60,7 @@ class ProfileKonselorView extends GetView<ProfileKonselorController> {
                 children: [
                   CircleAvatar(
                     radius: 60,
-                    backgroundColor: Colors.blueAccent.withOpacity(0.3),
+                    backgroundColor: Utils.biruTiga,
                     child: CircleAvatar(
                       radius: 55,
                       backgroundColor: Colors.white,
@@ -96,7 +96,7 @@ class ProfileKonselorView extends GetView<ProfileKonselorController> {
                         onPressed: () {},
                         icon: const Icon(
                           Icons.edit,
-                          color: Utils.biruLima,
+                          color: Utils.biruSatu,
                         ),
                         constraints: const BoxConstraints.tightFor(
                             width: 30, height: 30),
@@ -140,19 +140,19 @@ class ProfileKonselorView extends GetView<ProfileKonselorController> {
                         leadingIcon: Icons.person,
                         titleText: 'Nama Lengkap',
                         subtitleText: userData['fullName'],
-                        leadingIconColor: Utils.biruTiga,
+                        leadingIconColor: Colors.white,
                       ),
                       buildListTile(
                         leadingIcon: Icons.email,
                         titleText: 'Email Address',
                         subtitleText: userData['email'],
-                        leadingIconColor: Utils.biruTiga,
+                        leadingIconColor: Colors.white,
                       ),
                       buildListTile(
                         leadingIcon: Icons.work,
                         titleText: 'Profession',
                         subtitleText: userData['profession'],
-                        leadingIconColor: Utils.biruTiga,
+                        leadingIconColor: Colors.white,
                       ),
                     ],
                   );

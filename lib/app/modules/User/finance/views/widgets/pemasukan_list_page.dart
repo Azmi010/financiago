@@ -203,7 +203,42 @@ class PemasukanListPage extends GetView<PemasukanController> {
             right: 20,
             child: FloatingActionButton(
               onPressed: () {
-                Get.to(IncomeView());
+                showModalBottomSheet(
+                  context: context,
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(16)),
+                  ),
+                  builder: (BuildContext context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              controller.pickImage();
+                            },
+                            child: const Text("Upload Gambar"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              controller.takeImage();
+                            },
+                            child: const Text("Foto Gambar"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(IncomeView());
+                            },
+                            child: const Text("Isi Sendiri"),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
               },
               backgroundColor: Utils.biruDua,
               child: const Icon(Icons.add, color: Colors.white),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart'; // Import this package for date formatting
+import 'package:intl/intl.dart'; 
 import 'package:safeloan/app/utils/warna.dart';
 import 'package:safeloan/app/widgets/button_back_leading.dart';
 import 'package:safeloan/app/widgets/button_widget.dart';
@@ -16,7 +16,19 @@ class IncomeView extends GetView<FinanceController> {
   final TextEditingController notesC = TextEditingController();
   final ValueNotifier<String> selectedCategory = ValueNotifier<String>('');
 
-  IncomeView({super.key});
+  IncomeView({super.key}){
+    final args = Get.arguments;
+    if (args != null && args is Map<String, dynamic>) {
+      titleC.text = args['title'] ?? '';
+      nominalC.text = args['nominal'] ?? '';
+      DateTime? date = args['date'];
+      if (date != null) {
+        dateC.text = DateFormat('dd/MM/yyyy').format(date);
+      }
+      String category = args['category'] ?? '';
+      selectedCategory.value = category;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
