@@ -14,7 +14,6 @@ class AnalysisView extends GetView<AnalysisController> {
     final AnalysisResultController analysisResultController =
         Get.put(AnalysisResultController());
     final AnalysisController controller = Get.put(AnalysisController());
-    // Tambahkan controller untuk animasi
 
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +38,7 @@ class AnalysisView extends GetView<AnalysisController> {
                 ),
                 child: const Center(
                   child: Text(
-                    'Hi, aku robo-finance. aku adalah AI yang akan mendampingimu di dalam aplikasi Kelola.In!',
+                    'Hi, aku financia-bot. aku adalah AI yang akan mendampingimu di dalam aplikasi Kelola.In!',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),

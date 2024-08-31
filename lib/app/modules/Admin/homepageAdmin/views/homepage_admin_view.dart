@@ -16,7 +16,7 @@ class HomepageAdminView extends GetView<HomepageAdminController> {
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Utils.biruDua,
+        backgroundColor: Utils.biruSatu,
         actions: [
           IconButton(
             onPressed: () => homepageAdminController.logout(),
@@ -86,7 +86,7 @@ class HomepageAdminView extends GetView<HomepageAdminController> {
             Icon(
               icon,
               size: 40,
-              color: Utils.biruDua,
+              color: Utils.biruSatu,
             ),
             const SizedBox(width: 16),
             Text(
