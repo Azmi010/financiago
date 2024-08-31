@@ -27,7 +27,11 @@ class RegisterView extends GetView<RegisterController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/logo.png'),
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width: 100,
+                    fit: BoxFit.contain,
+                  ),
                 ],
               ),
             ),
@@ -45,7 +49,11 @@ class RegisterView extends GetView<RegisterController> {
                 Container(
                   width: lebar,
                   margin: EdgeInsets.only(
-                      left: lebar * 0.1, top: 20, right: lebar * 0.1,bottom: 20,),
+                    left: lebar * 0.1,
+                    top: 20,
+                    right: lebar * 0.1,
+                    bottom: 20,
+                  ),
                   child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
