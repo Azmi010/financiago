@@ -117,7 +117,7 @@ class NavigationView extends GetView<NavigationController> {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: const Color.fromRGBO(135, 209, 229, 1)
+                            color: const Color.fromRGBO(255, 147, 78, 1)
                                 .withOpacity(0.7),
                             spreadRadius: 0,
                             blurRadius: 30,

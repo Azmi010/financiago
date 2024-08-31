@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:safeloan/app/utils/warna.dart';
 import 'package:safeloan/app/widgets/button_widget.dart';
 
+import '../../tab_quiz/views/leaderboard.dart';
 import '../controllers/challange_page_controller.dart';
 
 class ChallangePageView extends GetView<ChallangePageController> {
@@ -67,13 +68,13 @@ class ChallangePageView extends GetView<ChallangePageController> {
                         challengeDetails['category']),
                     _buildInfoColumn(
                         challengeDetails['point']?.toString() ?? 'N/A', "Poin"),
-                    _buildInfoColumn(challengeDetails['coin']?.toString() ?? 'N/A', "Koin"),
+                    _buildInfoColumn(
+                        challengeDetails['coin']?.toString() ?? 'N/A', "Koin"),
                   ],
                 ),
                 const SizedBox(height: 40),
                 ButtonWidget(
-                  onPressed: () => Get.toNamed(
-                      routeName),
+                  onPressed: () => Get.toNamed(routeName),
                   nama: 'Selesaikan Sekarang',
                 ),
               ],
@@ -171,73 +172,89 @@ class ChallangePageView extends GetView<ChallangePageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: [
-        StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-          stream: controller.listChallenge(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-              return const Center(child: Text('No challenges found'));
-            }
-            controller.updateChallengeList(snapshot.data!);
+      body: Stack(
+        children: [
+          StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+            stream: controller.listChallenge(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                return const Center(child: Text('No challenges found'));
+              }
+              controller.updateChallengeList(snapshot.data!);
 
-            return Obx(() {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: ListView.builder(
-                  itemCount: controller.challengeList.length,
-                  itemBuilder: (context, index) {
-                    var challenge = controller.challengeList[index];
+              return Obx(() {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ListView.builder(
+                    itemCount: controller.challengeList.length,
+                    itemBuilder: (context, index) {
+                      var challenge = controller.challengeList[index];
 
-                    return FutureBuilder<bool>(
-                      future:
-                          controller.isChallengeCompletedByUser(challenge.id),
-                      builder: (context, completedSnapshot) {
-                        if (completedSnapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return cardItem(
-                            challenge.id,
-                            challenge.title,
-                            challenge.subTitle,
-                            Icons.hourglass_empty,
-                            Utils.backgroundCard,
-                            challenge.imageChallenge,
-                            context,
-                          );
-                        }
-                        if (completedSnapshot.hasData &&
-                            completedSnapshot.data == true) {
-                          return cardItem(
-                            challenge.id,
-                            challenge.title,
-                            challenge.subTitle,
-                            Icons.check_circle,
-                            Utils.biruTiga,
-                            challenge.imageChallenge,
-                            context,
-                          );
-                        } else {
-                          return cardItem(
-                            challenge.id,
-                            challenge.title,
-                            challenge.subTitle,
-                            Icons.history,
-                            Colors.white,
-                            challenge.imageChallenge,
-                            context,
-                          );
-                        }
-                      },
-                    );
-                  },
-                ),
-              );
-            });
-          },
-        )
-      ]),
+                      return FutureBuilder<bool>(
+                        future:
+                            controller.isChallengeCompletedByUser(challenge.id),
+                        builder: (context, completedSnapshot) {
+                          if (completedSnapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return cardItem(
+                              challenge.id,
+                              challenge.title,
+                              challenge.subTitle,
+                              Icons.hourglass_empty,
+                              Utils.backgroundCard,
+                              challenge.imageChallenge,
+                              context,
+                            );
+                          }
+                          if (completedSnapshot.hasData &&
+                              completedSnapshot.data == true) {
+                            return cardItem(
+                              challenge.id,
+                              challenge.title,
+                              challenge.subTitle,
+                              Icons.check_circle,
+                              Utils.biruTiga,
+                              challenge.imageChallenge,
+                              context,
+                            );
+                          } else {
+                            return cardItem(
+                              challenge.id,
+                              challenge.title,
+                              challenge.subTitle,
+                              Icons.history,
+                              Colors.white,
+                              challenge.imageChallenge,
+                              context,
+                            );
+                          }
+                        },
+                      );
+                    },
+                  ),
+                );
+              });
+            },
+          ),
+          Positioned(
+            bottom: 20,
+            right: 18,
+            child: FloatingActionButton(
+              onPressed: () {
+                Get.to(LeaderBoard());
+              },
+              backgroundColor: Utils.biruSatu,
+              child: const Icon(
+                Icons.leaderboard,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

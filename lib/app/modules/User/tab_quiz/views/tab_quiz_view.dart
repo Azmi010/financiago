@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:safeloan/app/modules/User/challange_page/views/challange_page_view.dart';
 import 'package:safeloan/app/modules/User/quiz/views/quiz_view.dart';
 import 'package:safeloan/app/utils/warna.dart';
+import 'package:safeloan/app/widgets/button_back_leading.dart';
 import 'package:safeloan/app/widgets/tab_bar_widget.dart';
 
 import '../controllers/tab_quiz_controller.dart';
@@ -21,6 +22,7 @@ class TabQuizView extends GetView<TabQuizController> {
             style: Utils.header,
           ),
           centerTitle: true,
+          leading: const ButtonBackLeading(),
         ),
         body: TabBarWidget(
           views: [

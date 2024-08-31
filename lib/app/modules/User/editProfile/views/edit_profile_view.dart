@@ -28,7 +28,7 @@ class EditProfileView extends GetView<EditProfileController> {
               children: [
                 CircleAvatar(
                   radius: 60,
-                  backgroundColor: Colors.blueAccent.withOpacity(0.3),
+                  backgroundColor: Utils.biruSatu,
                   child: CircleAvatar(
                     radius: 55,
                     backgroundColor: Colors.white,
@@ -55,11 +55,11 @@ class EditProfileView extends GetView<EditProfileController> {
                         color: Colors.white,
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Utils.biruTiga,
+                          color: Utils.biruSatu,
                           width: 2,
                         )),
                     child: IconButton(
-                      icon: const Icon(Icons.camera_alt, size: 20, color: Utils.biruLima,),
+                      icon: const Icon(Icons.camera_alt, size: 20, color: Utils.biruDua,),
                       onPressed: () => profileController.updateProfileImage(context),
                       constraints:
                           const BoxConstraints.tightFor(width: 40, height: 40),
@@ -112,8 +112,8 @@ class EditProfileView extends GetView<EditProfileController> {
   }) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Colors.blue.withOpacity(0.1),
-        child: Icon(icon, color: Colors.blue),
+        backgroundColor: Utils.biruTiga,
+        child: Icon(icon, color: Colors.white),
       ),
       title: TextField(
         controller: controller,
