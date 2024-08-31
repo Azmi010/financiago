@@ -47,7 +47,7 @@ class YouTubePlayerScreen extends GetView<EducationController> {
         player: YoutubePlayer(
           controller: youtubeController,
           showVideoProgressIndicator: true,
-          progressIndicatorColor: Utils.biruDua,
+          progressIndicatorColor: Utils.biruTiga,
           topActions: <Widget>[
             const SizedBox(width: 8.0),
             Expanded(

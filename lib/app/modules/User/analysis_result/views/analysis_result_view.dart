@@ -30,7 +30,7 @@ class AnalysisResultView extends GetView<AnalysisResultController> {
               Container(
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color: Utils.biruEmpat,
+                  color: Utils.biruSatu,
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: const Row(

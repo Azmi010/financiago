@@ -4,7 +4,6 @@ import 'package:safeloan/app/modules/User/education/controllers/education_contro
 import 'package:safeloan/app/modules/User/education/views/article_view.dart';
 import 'package:safeloan/app/modules/User/education/views/video_view.dart';
 import 'package:safeloan/app/utils/warna.dart';
-import 'package:safeloan/app/widgets/button_back_leading.dart';
 import 'package:safeloan/app/widgets/tab_bar_widget.dart';
 
 class EducationView extends GetView<EducationController> {
@@ -14,12 +13,12 @@ class EducationView extends GetView<EducationController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-            'Edukasi',
-            style: Utils.header,
-          ),
-          centerTitle: true,
-          leading: const ButtonBackLeading()),
+        title: const Text(
+          'Edukasi',
+          style: Utils.header,
+        ),
+        centerTitle: true,
+      ),
       body: const TabBarWidget(
           views: [ArticleWidget(), VideoWidget()],
           tabLabels: ['Artikel', 'Video']),

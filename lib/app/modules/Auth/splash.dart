@@ -5,11 +5,10 @@ import 'package:safeloan/app/utils/warna.dart';
 class SplashView extends StatelessWidget {
   final String nextRoute;
 
-  const SplashView({Key? key, required this.nextRoute}) : super(key: key);
+  const SplashView({super.key, required this.nextRoute});
 
   @override
   Widget build(BuildContext context) {
-    // Memulai delay saat widget dibangun
     Future.delayed(const Duration(seconds: 1), () {
       Get.offAllNamed(nextRoute);
     });
@@ -20,7 +19,7 @@ class SplashView extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/loading_background.png'),
+            image: AssetImage('assets/images/splash.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -29,9 +28,12 @@ class SplashView extends StatelessWidget {
           children: [
             Image.asset(
               "assets/images/logo.png",
+              width: 80,
+              fit: BoxFit.contain,
             ),
+            const SizedBox(height: 5),
             const Text(
-              "Kelola.In",
+              "FinanciaGo",
               style: TextStyle(
                 color: Utils.biruSatu,
                 fontSize: 20,

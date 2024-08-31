@@ -76,7 +76,7 @@ class ResultPage extends GetView<QuizController> {
             const SizedBox(height: 50),
             ButtonWidget(
               nama: 'Kembali ke Beranda',
-              colorBackground: Utils.biruDua,
+              colorBackground: Utils.biruTiga,
               onPressed: () {
                 Get.offAll(() => const NavigationView());
               },

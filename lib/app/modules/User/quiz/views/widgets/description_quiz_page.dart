@@ -85,8 +85,8 @@ class DescriptionQuizPage extends StatelessWidget {
                     Get.back();
                   },
                   nama: "Kerjakan Kuis Lain",
-                  colorBackground: Utils.biruLima,
-                  colorText: Utils.biruSatu,
+                  colorBackground: Utils.biruTiga,
+                  colorText: Colors.white,
                 ),
               ),
             ],

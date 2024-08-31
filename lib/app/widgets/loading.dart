@@ -9,18 +9,18 @@ class LoadingView extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          body: Container(
+        body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/loading_background.png'),
-              fit: BoxFit.cover, // Atur fit yang sesuai
+              image: AssetImage('assets/images/splash.png'),
+              fit: BoxFit.cover,
             ),
           ),
           child: Center(
             child: LoadingAnimationWidget.inkDrop(
-          color: Colors.white,
-          size: 200,
-        ),
+              color: Colors.white,
+              size: 200,
+            ),
           ),
         ),
       ),

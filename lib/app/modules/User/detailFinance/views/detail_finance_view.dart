@@ -9,7 +9,7 @@ import 'package:safeloan/app/widgets/confirm_show_dialog_widget.dart';
 import '../controllers/detail_finance_controller.dart';
 
 class DetailFinanceView extends GetView<DetailFinanceController> {
-  const DetailFinanceView({Key? key}) : super(key: key);
+  const DetailFinanceView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,35 +44,43 @@ class DetailFinanceView extends GetView<DetailFinanceController> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                _buildEditableCard(
-                  title: 'Judul',
-                  icon: FontAwesomeIcons.heading,
-                  controller: titleController,
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        _buildEditableCard(
+                          title: 'Judul',
+                          icon: FontAwesomeIcons.heading,
+                          controller: titleController,
+                        ),
+                        _buildEditableCard(
+                          title: 'Jumlah',
+                          icon: FontAwesomeIcons.moneyBillWave,
+                          controller: jumlahController,
+                          keyboardType: TextInputType.number,
+                        ),
+                        _buildNonEditableCard(
+                          title: 'Tanggal',
+                          icon: FontAwesomeIcons.calendarDays,
+                          content: financeData['date'] != null
+                              ? DateFormat('dd MMMM yyyy')
+                                  .format(financeData['date'])
+                              : 'N/A',
+                        ),
+                        _buildNonEditableCard(
+                          title: 'Kategori',
+                          icon: FontAwesomeIcons.tag,
+                          content: financeData['category'],
+                        ),
+                        _buildEditableCard(
+                          title: 'Deskripsi',
+                          icon: FontAwesomeIcons.circleInfo,
+                          controller: deskripsiController,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                _buildEditableCard(
-                  title: 'Jumlah',
-                  icon: FontAwesomeIcons.moneyBillWave,
-                  controller: jumlahController,
-                  keyboardType: TextInputType.number,
-                ),
-                _buildNonEditableCard(
-                  title: 'Tanggal',
-                  icon: FontAwesomeIcons.calendarDays,
-                  content: financeData['date'] != null
-                      ? DateFormat('dd MMMM yyyy').format(financeData['date'])
-                      : 'N/A',
-                ),
-                _buildNonEditableCard(
-                  title: 'Kategori',
-                  icon: FontAwesomeIcons.tag,
-                  content: financeData['category'],
-                ),
-                _buildEditableCard(
-                  title: 'Deskripsi',
-                  icon: FontAwesomeIcons.circleInfo,
-                  controller: deskripsiController,
-                ),
-                const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -178,9 +186,6 @@ class DetailFinanceView extends GetView<DetailFinanceController> {
       DetailFinanceController controller, BuildContext context) {
     final financeId = Get.arguments['docId'] as String?;
     final type = Get.arguments['type'] as String?;
-
-    // Debug logging
-    print('Delete Confirmation: docId = $financeId, type = $type');
 
     if (financeId == null || type == null) {
       Get.snackbar('Error', 'Invalid arguments for deleting finance data.');

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart'; // Import this package for date formatting
+import 'package:intl/intl.dart'; 
 import 'package:safeloan/app/utils/warna.dart';
 import 'package:safeloan/app/widgets/button_back_leading.dart';
 import 'package:safeloan/app/widgets/button_widget.dart';
@@ -16,7 +16,19 @@ class IncomeView extends GetView<FinanceController> {
   final TextEditingController notesC = TextEditingController();
   final ValueNotifier<String> selectedCategory = ValueNotifier<String>('');
 
-  IncomeView({super.key});
+  IncomeView({super.key}){
+    final args = Get.arguments;
+    if (args != null && args is Map<String, dynamic>) {
+      titleC.text = args['title'] ?? '';
+      nominalC.text = args['nominal'] ?? '';
+      DateTime? date = args['date'];
+      if (date != null) {
+        dateC.text = DateFormat('dd/MM/yyyy').format(date);
+      }
+      String category = args['category'] ?? '';
+      selectedCategory.value = category;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,22 +80,22 @@ class IncomeView extends GetView<FinanceController> {
                       children: [
                         _buildCategoryColumn(
                           category: 'Gaji',
-                          icon: Icons.wallet,
+                          icon: 'assets/images/gaji.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Hadiah',
-                          icon: Icons.card_giftcard,
+                          icon: 'assets/images/hadiah.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Investasi',
-                          icon: Icons.attach_money,
+                          icon: 'assets/images/investasi.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Freelance',
-                          icon: Icons.work_history_rounded,
+                          icon: 'assets/images/freelance.png',
                           selectedCategory: selectedCategory,
                         ),
                       ],
@@ -163,7 +175,7 @@ class IncomeView extends GetView<FinanceController> {
 
   Widget _buildCategoryColumn({
     required String category,
-    required IconData icon,
+    required String icon,
     required ValueNotifier<String> selectedCategory,
   }) {
     return ValueListenableBuilder<String>(
@@ -184,18 +196,14 @@ class IncomeView extends GetView<FinanceController> {
                       color: isSelected ? Utils.biruEmpat : Colors.transparent),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(
-                  icon,
-                  size: 35,
-                  color: isSelected ? Utils.biruDua : Colors.black,
-                ),
+                child: Image.asset(icon, scale: 10,)
               ),
               const SizedBox(height: 7),
               Text(
                 category,
                 style: TextStyle(
                   fontSize: 12,
-                  color: isSelected ? Utils.biruDua : Colors.black,
+                  color: isSelected ? Utils.biruTiga : Colors.black,
                 ),
               ),
             ],

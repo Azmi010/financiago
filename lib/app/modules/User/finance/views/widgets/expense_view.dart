@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart'; // Import this package for date formatting
+import 'package:intl/intl.dart';
 
 import '../../controllers/finance_controller.dart';
 import 'package:safeloan/app/utils/warna.dart';
@@ -15,7 +15,19 @@ class ExpenseView extends GetView<FinanceController> {
   final TextEditingController notesC = TextEditingController();
   final ValueNotifier<String> selectedCategory = ValueNotifier<String>('');
 
-  ExpenseView({super.key});
+  ExpenseView({super.key}) {
+    final args = Get.arguments;
+    if (args != null && args is Map<String, dynamic>) {
+      titleC.text = args['title'] ?? '';
+      nominalC.text = args['nominal'] ?? '';
+      DateTime? date = args['date'];
+      if (date != null) {
+        dateC.text = DateFormat('dd/MM/yyyy').format(date);
+      }
+      String category = args['category'] ?? '';
+      selectedCategory.value = category;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,22 +79,22 @@ class ExpenseView extends GetView<FinanceController> {
                       children: [
                         _buildCategoryColumn(
                           category: 'Darurat',
-                          icon: Icons.emergency,
+                          icon: 'assets/images/darurat.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Pangan',
-                          icon: Icons.restaurant,
+                          icon: 'assets/images/pangan.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
-                          category: 'Pakaian',
-                          icon: Icons.shopping_bag,
+                          category: 'Fesyen',
+                          icon: 'assets/images/fesyen.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Hiburan',
-                          icon: Icons.movie,
+                          icon: 'assets/images/hiburan.png',
                           selectedCategory: selectedCategory,
                         ),
                       ],
@@ -95,22 +107,22 @@ class ExpenseView extends GetView<FinanceController> {
                       children: [
                         _buildCategoryColumn(
                           category: 'Pendidikan',
-                          icon: Icons.school,
+                          icon: 'assets/images/pendidikan.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Kesehatan',
-                          icon: Icons.local_hospital,
+                          icon: 'assets/images/kesehatan.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Cicilan',
-                          icon: Icons.payment,
+                          icon: 'assets/images/cicilan.png',
                           selectedCategory: selectedCategory,
                         ),
                         _buildCategoryColumn(
                           category: 'Rumahan',
-                          icon: Icons.home,
+                          icon: 'assets/images/rumahan.png',
                           selectedCategory: selectedCategory,
                         ),
                       ],
@@ -153,7 +165,8 @@ class ExpenseView extends GetView<FinanceController> {
                 String notes = notesC.text;
                 String category = selectedCategory.value;
 
-                if (title.isEmpty || nominalText.isEmpty ||
+                if (title.isEmpty ||
+                    nominalText.isEmpty ||
                     dateText.isEmpty ||
                     category.isEmpty ||
                     notes.isEmpty) {
@@ -172,8 +185,8 @@ class ExpenseView extends GetView<FinanceController> {
                     return;
                   }
 
-                  controller.confirmAddExpense(
-                      context, title, nominal, category, date, notes);
+                  controller.confirmAddExpense(context, title,
+                      double.parse(nominalText), category, date, notes);
                 }
               },
               nama: 'Tambah',
@@ -186,7 +199,7 @@ class ExpenseView extends GetView<FinanceController> {
 
   Widget _buildCategoryColumn({
     required String category,
-    required IconData icon,
+    required String icon,
     required ValueNotifier<String> selectedCategory,
   }) {
     return ValueListenableBuilder<String>(
@@ -207,18 +220,14 @@ class ExpenseView extends GetView<FinanceController> {
                       color: isSelected ? Utils.biruEmpat : Colors.transparent),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(
-                  icon,
-                  size: 35,
-                  color: isSelected ? Utils.biruDua : Colors.black,
-                ),
+                child: Image.asset(icon, scale: 10,)
               ),
               const SizedBox(height: 7),
               Text(
                 category,
                 style: TextStyle(
                   fontSize: 12,
-                  color: isSelected ? Utils.biruDua : Colors.black,
+                  color: isSelected ? Utils.biruTiga : Colors.black,
                 ),
               ),
             ],

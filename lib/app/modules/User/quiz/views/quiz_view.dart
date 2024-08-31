@@ -22,10 +22,10 @@ class QuizView extends GetView<QuizController> {
               onPressed: () {
                 Get.to(LeaderBoard());
               },
-              backgroundColor: Utils.biruLima,
+              backgroundColor: Utils.biruSatu,
               child: const Icon(
                 Icons.leaderboard,
-                color: Utils.biruDua,
+                color: Colors.white,
               ),
             ),
           ),

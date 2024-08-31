@@ -13,7 +13,7 @@ class ProfileView extends GetView<ProfileController> {
     VoidCallback? onTap,
     String? subtitleText,
     Color leadingIconColor = Colors.black,
-    Color backgroundColor = Utils.biruLima,
+    Color backgroundColor = Utils.biruTiga,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
@@ -53,13 +53,13 @@ class ProfileView extends GetView<ProfileController> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.all(25),
+              margin: const EdgeInsets.all(25),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   CircleAvatar(
                     radius: 60,
-                    backgroundColor: Colors.blueAccent.withOpacity(0.3),
+                    backgroundColor: Utils.biruSatu,
                     child: CircleAvatar(
                       radius: 55,
                       backgroundColor: Colors.white,
@@ -88,14 +88,14 @@ class ProfileView extends GetView<ProfileController> {
                           color: Colors.white,
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Utils.biruTiga,
+                            color: Utils.biruSatu,
                             width: 2,
                           )),
                       child: IconButton(
                         onPressed: () => Get.toNamed('/edit-profile'),
                         icon: const Icon(
                           Icons.edit,
-                          color: Utils.biruLima,
+                          color: Utils.biruTiga,
                         ),
                         constraints: const BoxConstraints.tightFor(
                             width: 30, height: 30),
@@ -139,31 +139,31 @@ class ProfileView extends GetView<ProfileController> {
                         leadingIcon: Icons.person,
                         titleText: 'Nama Lengkap',
                         subtitleText: userData['fullName'],
-                        leadingIconColor: Utils.biruTiga,
+                        leadingIconColor: Colors.white,
                       ),
                       buildListTile(
                         leadingIcon: Icons.email,
                         titleText: 'Email',
                         subtitleText: userData['email'],
-                        leadingIconColor: Utils.biruTiga,
+                        leadingIconColor: Colors.white,
                       ),
                       buildListTile(
                         leadingIcon: Icons.calendar_today,
                         titleText: 'Umur',
                         subtitleText: userData['age']?.toString() ?? "belum ada",
-                        leadingIconColor: Utils.biruTiga,
+                        leadingIconColor: Colors.white,
                       ),
                       buildListTile(
                         leadingIcon: Icons.work,
                         titleText: 'Profesi',
                         subtitleText: userData['profession'] ?? "belum ada",
-                        leadingIconColor: Utils.biruTiga,
+                        leadingIconColor: Colors.white,
                       ),
                       buildListTile(
                         leadingIcon: Icons.leaderboard,
                         titleText: 'Poin',
                         subtitleText: userData['point']?.toString() ?? '0',
-                        leadingIconColor: Utils.biruTiga,
+                        leadingIconColor: Colors.white,
                       ),
                     ],
                   );
@@ -196,7 +196,7 @@ class ProfileView extends GetView<ProfileController> {
                     backgroundColor: Colors.red,
                     leadingIconColor: Colors.white,
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   buildListTile(
                     onTap: () => profileController.logout(context),
                     leadingIcon: Icons.logout,

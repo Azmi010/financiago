@@ -23,7 +23,11 @@ class LoginView extends GetView<LoginController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('assets/images/logo.png'),
+              Image.asset(
+                'assets/images/logo.png',
+                width: 100,
+                fit: BoxFit.contain,
+              ),
             ],
           ),
         ),

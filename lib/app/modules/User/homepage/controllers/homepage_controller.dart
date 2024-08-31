@@ -49,7 +49,7 @@ class HomepageController extends GetxController {
   }
 
   void navigateToDetailArticle(Article article) {
-    Get.to(DetailArticlePage(article: article));
+    Get.to(() => DetailArticlePage(article: article));
   }
 
   @override
