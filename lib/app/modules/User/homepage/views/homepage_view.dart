@@ -329,31 +329,6 @@ class HomepageView extends GetView<HomepageController> {
                                 ),
                               ),
                             ),
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Container(
-                                height: 200,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.black38,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    article.title.length > 20
-                                        ? "Artikel : ${article.title.substring(0, 20)}..."
-                                        : "Artikel : ${article.title}",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
                         );
                       },

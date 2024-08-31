@@ -19,7 +19,7 @@ Widget inputAdminWidget(
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Utils.biruDua),
+            borderSide: const BorderSide(color: Utils.biruTiga),
           ),
           contentPadding: const EdgeInsets.fromLTRB(12, 16, 12, 0),
         ),

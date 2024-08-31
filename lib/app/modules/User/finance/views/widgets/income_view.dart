@@ -203,7 +203,7 @@ class IncomeView extends GetView<FinanceController> {
                 category,
                 style: TextStyle(
                   fontSize: 12,
-                  color: isSelected ? Utils.biruDua : Colors.black,
+                  color: isSelected ? Utils.biruTiga : Colors.black,
                 ),
               ),
             ],
